@@ -7,11 +7,14 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "cz"
   },
   "dependencies": {
     "core-js": "3.27.2",
-    "vue": "3.2.45"
+    "vue": "3.2.45",
+    "vue-router": "4.1.6",
+    "vuex": "4.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
