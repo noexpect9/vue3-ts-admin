@@ -1,27 +1,21 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import '../src/assets/css/base.less'
 import router from './router'
 import store from './store'
-import '@/common/base.css'
 import $http from './service'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-$http.request({
-  url: '/get',
-  method: 'GET',
-  interceptors: {
-    requestInterceptor: (config) => {
-      return config
-    },
-    requestInterceptorCatch(error) {
-      return error
-    },
-    responseInterceptor: (res) => {
-      return res
-    },
-    responseInterceptorCatch(error) {
-      return error
-    }
-  }
-})
+const app = createApp(App)
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+$http
+// .request({
+//   url: '/get'
+// })
+// .then((res) => {
+//   console.log(res)
+// })
 
-createApp(App).use(router).use(store).mount('#app')
+app.use(router).use(store).mount('#app')

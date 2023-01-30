@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <!-- <RouterLink to="/login">Login</RouterLink>
-    <RouterLink to="/Main">Main</RouterLink> -->
+  <div class="app">
     <RouterView></RouterView>
   </div>
 </template>
 
 <script lang="ts" setup></script>
 
-<style lang="less"></style>
+<style lang="less">
+.app {
+  height: 100%;
+}
+</style>

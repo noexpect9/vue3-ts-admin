@@ -1,22 +1,22 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "types": ["webpack-env"],
-    "paths": {
+    "target": "esnext", // 目标代码
+    "module": "esnext", // 目标代码需要使用的模块化方案
+    "strict": true, // 严格检查
+    "jsx": "preserve", // 对jsx进行怎么样的处理
+    "moduleResolution": "node", // 按照node的模式解析模块
+    "skipLibCheck": true, // 跳过一些库的类型检测
+    "esModuleInterop": true, // 混合使用模块化
+    "allowSyntheticDefaultImports": true, // 允许合成默认导入
+    "forceConsistentCasingInFileNames": true, // 强制文件名的大小写一致
+    "useDefineForClassFields": true, // 生成符合ECMAScript标准的类字段
+    "sourceMap": true, // 生成映射文件
+    "baseUrl": ".", // 文件路径在解析时,基本的url
+    "types": ["webpack-env"], // 指定具体要解析使用的类型
+    "paths": { // 路径解析
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"] // 指定一组描述目标运行时环境的捆绑库声明文件
   },
   "include": [
     "src/**/*.ts",
@@ -25,5 +25,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"] // 排除文件
 }
