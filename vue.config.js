@@ -7,6 +7,18 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = defineConfig({
   // publicPath: './',
   transpileDependencies: true,
+  // 配置代理
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://152.136.185.210:4000',
+        pathRewrite: {
+          '^/api': ''
+        },
+        changeOrigin: true
+      }
+    }
+  },
   // 方式一
   configureWebpack: {
     resolve: {
