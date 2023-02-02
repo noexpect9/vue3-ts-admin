@@ -35,7 +35,6 @@ const loginModule: Module<LoginState, RootState> = {
     async accountLogin({ commit }, payload: Account) {
       // 1.实现登陆
       const res = await accountLoginRequest(payload)
-      console.log(res)
       const { id, token } = res.data
       // 保存token到vuex与本地缓存
       commit('saveToken', token)
@@ -49,8 +48,23 @@ const loginModule: Module<LoginState, RootState> = {
       // 3.获取用户菜单
       const userMenu = await requestUserMenu(id)
       commit('saveMenus', userMenu.data)
-      localCache.setCache('saveMenu', userMenu.data)
+      localCache.setCache('userMenu', userMenu.data)
       router.push('/main')
+    },
+    // 解决vuex刷新数据丢失
+    loadLoginData({ commit }) {
+      const token = localCache.getCache('token')
+      if (token) {
+        commit('saveToken', token)
+      }
+      const userInfo = localCache.getCache('userInfo')
+      if (userInfo) {
+        commit('saveUserInfo', userInfo)
+      }
+      const userMenu = localCache.getCache('userMenu')
+      if (userMenu) {
+        commit('saveMenus', userMenu)
+      }
     }
   }
 }
