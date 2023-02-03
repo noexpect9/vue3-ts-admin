@@ -1,14 +1,16 @@
 <template>
   <div class="nav-menu">
     <div class="logo">
-      <img class="img" src="~@/assets/img/logo.svg" alt="" />
-      <span class="title">Vue3+TS</span>
+      <img class="img" src="@/assets/img/logo.svg" alt="logo" />
+      <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
-      default-active="2"
+      :collapse="collapse"
+      default-active="1"
       class="el-menu-vertical-demo"
       background-color="#001529"
-      text-color="#fff"
+      text-color="#b7bdc3"
+      active-text-color="#0a60bd"
     >
       <template v-for="item in userMenus" :key="item.id">
         <!-- 一级菜单 -->
@@ -30,7 +32,7 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item>
+              <el-menu-item :index="subitem.id + ''">
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
             </template>
@@ -49,6 +51,13 @@
 import { useStore } from '@/store/index'
 import { computed } from 'vue'
 const store = useStore()
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps({
+  collapse: {
+    type: Boolean,
+    default: false
+  }
+})
 const userMenus = computed(() => {
   return store.state.login.userMenu
 })
@@ -61,11 +70,12 @@ const userMenus = computed(() => {
 
   .logo {
     display: flex;
-    height: 48px;
+    height: 28px;
     padding: 12px 10px 8px 10px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
     .img {
       height: 100%;
       margin: 0 10px;
@@ -103,10 +113,6 @@ const userMenus = computed(() => {
       }
     }
   }
-
-  // 目录
-
-  // hover 高亮
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {

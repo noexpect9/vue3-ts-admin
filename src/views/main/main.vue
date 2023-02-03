@@ -1,11 +1,13 @@
 <template>
   <div class="main">
     <el-container class="content">
-      <el-aside width="200px">
-        <nav-menu></nav-menu>
+      <el-aside :width="isCollapse ? '60px' : '200px'">
+        <nav-menu :collapse="isCollapse"></nav-menu>
       </el-aside>
       <el-container class="page">
-        <el-header class="page_header">Header</el-header>
+        <el-header class="page_header">
+          <nav-header @fold-change="handleFoldChange"></nav-header>
+        </el-header>
         <el-main class="page_content">Main</el-main>
       </el-container>
     </el-container>
@@ -14,6 +16,13 @@
 
 <script setup lang="ts">
 import { NavMenu } from '@/components/nav-menu'
+import { NavHeader } from '@/components/nav-header'
+import { ref } from 'vue'
+
+const isCollapse = ref(false)
+const handleFoldChange = (isFold: boolean) => {
+  isCollapse.value = isFold
+}
 </script>
 
 <style scoped lang="less">
@@ -58,8 +67,10 @@ import { NavMenu } from '@/components/nav-menu'
     cursor: pointer;
     background-color: #062e53;
     transition: width 0.3s linear;
-    scrollbar-width: none; /* firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
 
     &::-webkit-scrollbar {
       display: none;
