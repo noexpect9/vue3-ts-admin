@@ -8,7 +8,9 @@
         <el-header class="page_header">
           <nav-header @fold-change="handleFoldChange"></nav-header>
         </el-header>
-        <el-main class="page_content">Main</el-main>
+        <el-main class="page_content">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>

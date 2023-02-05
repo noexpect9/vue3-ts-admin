@@ -32,7 +32,10 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuClick(subitem)"
+              >
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
             </template>
@@ -50,7 +53,9 @@
 <script setup lang="ts">
 import { useStore } from '@/store/index'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 const store = useStore()
+const router = useRouter()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   collapse: {
@@ -61,6 +66,12 @@ const props = defineProps({
 const userMenus = computed(() => {
   return store.state.login.userMenu
 })
+
+const handleMenuClick = (item: any) => {
+  router.push({
+    path: item.url
+  })
+}
 </script>
 
 <style scoped lang="less">

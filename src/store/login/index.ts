@@ -8,6 +8,7 @@ import {
 } from '@/service/login/index'
 import { Account } from '@/service/login/type'
 import localCache from '@/utils/cache'
+import { menuToRoute } from '@/utils/mapMenus'
 import router from '@/router'
 
 const loginModule: Module<LoginState, RootState> = {
@@ -29,6 +30,11 @@ const loginModule: Module<LoginState, RootState> = {
     },
     saveMenus(state, userMenu: any) {
       state.userMenu = userMenu
+      const routes = menuToRoute(userMenu)
+      routes.forEach((route) => {
+        // 遍历并添加动态路由
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
