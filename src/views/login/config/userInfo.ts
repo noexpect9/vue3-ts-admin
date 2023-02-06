@@ -3,8 +3,8 @@ export const rules = {
   name: [
     { required: true, message: '账号不能为空', trigger: 'blur' },
     {
-      pattern: /^[a-z0-9]{5,10}$/,
-      message: '账号必须是5-10个字符或者数字',
+      pattern: /^[a-z0-9]{3,10}$/,
+      message: '账号必须是3-10个字符或者数字',
       trigger: 'blur'
     }
   ],

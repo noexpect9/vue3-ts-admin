@@ -9,7 +9,9 @@
           <nav-header @fold-change="handleFoldChange"></nav-header>
         </el-header>
         <el-main class="page_content">
-          <router-view></router-view>
+          <div class="page_user">
+            <router-view></router-view>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -43,7 +45,7 @@ const handleFoldChange = (isFold: boolean) => {
   .content {
     height: 100%;
 
-    .page-info {
+    .page_user {
       background-color: #fff;
       border-radius: 5px;
     }
